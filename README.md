@@ -90,6 +90,7 @@ export default () => (
 | toolbarRender | (originalNode: React.ReactElement, info: Omit<[ToolbarRenderInfoType](#ToolbarRenderInfoType), 'current' \| 'total'>) => React.ReactNode | - | Customize toolbar |
 | onVisibleChange | (visible: boolean, prevVisible: boolean) => void | - | Callback when visible is changed |
 | onTransform | { transform: [TransformType](#TransformType), action: [TransformAction](#TransformAction) } | - | Callback when transform is changed |
+| triggerSwitches | boolean | true | Toggle button display |
 
 ## Image.PreviewGroup
 
@@ -134,6 +135,7 @@ export default () => (
 | toolbarRender | (originalNode: React.ReactElement, info: [ToolbarRenderInfoType](#ToolbarRenderInfoType)) => React.ReactNode | - | Customize toolbar |
 | onVisibleChange | (visible: boolean, prevVisible: boolean, current: number) => void | - | Callback when visible is changed |
 | onTransform | { transform: [TransformType](#TransformType), action: [TransformAction](#TransformAction) } | - | Callback when transform is changed |
+| triggerSwitches | boolean | true | Toggle button display |
 
 ### TransformType
 
@@ -186,6 +188,8 @@ type TransformAction =
     onRotateRight: () => void;
     onZoomOut: () => void;
     onZoomIn: () => void;
+    onSwitchLeft: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    onSwitchRight: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   };
   transform: {
     x: number;

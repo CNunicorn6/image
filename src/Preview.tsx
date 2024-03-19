@@ -29,6 +29,8 @@ export type ToolbarRenderInfoType = {
     onRotateRight: () => void;
     onZoomOut: () => void;
     onZoomIn: () => void;
+    onSwitchLeft: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    onSwitchRight: (event?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   };
   transform: TransformType;
   current: number;
@@ -71,6 +73,7 @@ export interface PreviewProps extends Omit<IDialogPropTypes, 'onClose'> {
     info: ToolbarRenderInfoType,
   ) => React.ReactNode;
   onChange?: (current, prev) => void;
+  triggerSwitches?: boolean;
 }
 
 interface PreviewImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -115,6 +118,7 @@ const Preview: React.FC<PreviewProps> = props => {
     scaleStep = 0.5,
     minScale = 1,
     maxScale = 50,
+    triggerSwitches = true,
     transitionName = 'zoom',
     maskTransitionName = 'fade',
     imageRender,
@@ -127,7 +131,7 @@ const Preview: React.FC<PreviewProps> = props => {
 
   const imgRef = useRef<HTMLImageElement>();
   const groupContext = useContext(PreviewGroupContext);
-  const showLeftOrRightSwitches = groupContext && count > 1;
+  const showLeftOrRightSwitches = triggerSwitches && groupContext && count > 1;
   const showOperationsProgress = groupContext && count >= 1;
   const [enableTransition, setEnableTransition] = useState(true);
   const { transform, resetTransform, updateTransform, dispatchZoomChange } = useImageTransform(
@@ -256,9 +260,8 @@ const Preview: React.FC<PreviewProps> = props => {
       className={`${prefixCls}-img`}
       alt={alt}
       style={{
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${
-          transform.flipX ? '-' : ''
-        }${scale}, ${transform.flipY ? '-' : ''}${scale}, 1) rotate(${rotate}deg)`,
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale3d(${transform.flipX ? '-' : ''
+          }${scale}, ${transform.flipY ? '-' : ''}${scale}, 1) rotate(${rotate}deg)`,
         transitionDuration: (!enableTransition || isTouching) && '0s',
       }}
       fallback={fallback}

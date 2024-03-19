@@ -63,6 +63,7 @@ const Group: React.FC<GroupConsumerProps> = ({
     onTransform,
     toolbarRender,
     imageRender,
+    triggerSwitches = true,
     ...dialogProps
   } = typeof preview === 'object' ? preview : ({} as PreviewGroupPreview);
 
@@ -157,6 +158,7 @@ const Group: React.FC<GroupConsumerProps> = ({
         toolbarRender={toolbarRender}
         imageRender={imageRender}
         onChange={onInternalChange}
+        triggerSwitches={triggerSwitches}
         {...dialogProps}
       />
     </PreviewGroupContext.Provider>

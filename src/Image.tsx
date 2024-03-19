@@ -40,6 +40,7 @@ export interface ImagePreviewType
     originalNode: React.ReactElement,
     info: Omit<ToolbarRenderInfoType, 'current' | 'total'>,
   ) => React.ReactNode;
+  triggerSwitches?: boolean;
 }
 
 export interface ImageProps
@@ -104,6 +105,7 @@ const ImageInternal: CompoundedComponent<ImageProps> = props => {
     maxScale,
     imageRender,
     toolbarRender,
+    triggerSwitches = true,
     ...dialogProps
   }: ImagePreviewType = typeof preview === 'object' ? preview : {};
   const src = previewSrc ?? imgSrc;
@@ -244,6 +246,7 @@ const ImageInternal: CompoundedComponent<ImageProps> = props => {
           imageRender={imageRender}
           imgCommonProps={imgCommonProps}
           toolbarRender={toolbarRender}
+          triggerSwitches={triggerSwitches}
           {...dialogProps}
         />
       )}

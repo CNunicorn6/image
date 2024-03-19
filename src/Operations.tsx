@@ -206,6 +206,8 @@ const Operations: React.FC<OperationsProps> = props => {
                       onRotateRight,
                       onZoomOut,
                       onZoomIn,
+                      onSwitchLeft,
+                      onSwitchRight,
                     },
                     transform,
                     ...(groupContext ? { current, total: count } : {}),

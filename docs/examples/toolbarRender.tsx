@@ -21,7 +21,8 @@ export default function ToolbarRender() {
                 onRotateRight,
                 onZoomIn,
                 onZoomOut,
-                onClose,
+                onSwitchLeft,
+                onSwitchRight,
               },
             },
           ) => {
@@ -35,7 +36,8 @@ export default function ToolbarRender() {
                 <div onClick={onRotateRight}>rotateRight</div>
                 <div onClick={onZoomIn}>zoomIn</div>
                 <div onClick={onZoomOut}>zoomOut</div>
-                <div onClick={onClose}>close</div>
+                <div onClick={onSwitchLeft}>left</div>
+                <div onClick={onSwitchRight}>right</div>
               </div>
             );
           },
